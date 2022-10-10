@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.example.asteroidradar.app-mergeDebugResources-56:/layout/asteroid_item.xml",
+        "source": "com.example.asteroidradar.app-main-59:/layout/asteroid_item.xml"
+    },
+    {
+        "merged": "com.example.asteroidradar.app-mergeDebugResources-56:/layout/fragment_detail.xml",
+        "source": "com.example.asteroidradar.app-main-59:/layout/fragment_detail.xml"
+    },
+    {
+        "merged": "com.example.asteroidradar.app-mergeDebugResources-56:/layout/fragment_main.xml",
+        "source": "com.example.asteroidradar.app-main-59:/layout/fragment_main.xml"
+    }
+]
