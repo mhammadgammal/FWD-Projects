@@ -31,7 +31,6 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 app:setPic="@{viewModel.pic.url}"
-                tools:ignore="ImageContrastCheck"
                 android:contentDescription="@string/image_of_the_day" />
 
             <TextView
