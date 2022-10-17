@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Shoe Inventory</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="provide_information">Please enter your information</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="name">Name</string>
+    <string name="company_name">Company Name</string>
+    <string name="description">Description</string>
+    <string name="shoe_name">Shoe Name</string>
+    <string name="shoe_details">Shoe Details</string>
+    <string name="shoe_com_name">Company Name</string>
+    <string name="shoe_size">Shoe Size</string>
+    <string name="done">Done</string>
+    <string name="add">add</string>
+    <string name="password">Password</string>
+    <string name="have_not_acc_yet">Haven\'t account yet?</string>
+    <string name="guest">Continue as guest</string>
+    <string name="logout">Logout</string>
+</resources>
