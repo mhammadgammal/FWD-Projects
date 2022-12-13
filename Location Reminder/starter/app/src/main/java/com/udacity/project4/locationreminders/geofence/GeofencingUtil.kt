@@ -10,7 +10,7 @@ import com.google.android.gms.maps.model.LatLng
 
 class GeofencingUtil(val context: Context): ContextWrapper(context) {
     companion object{
-        private const val GEOFENCE_REQUEST_ACTION = "GEOFENCE_REQUEST_ACTION"
+        const val GEOFENCE_REQUEST_ACTION = "GEOFENCE_REQUEST_ACTION"
     }
 
     fun pendingIntent(): PendingIntent {
