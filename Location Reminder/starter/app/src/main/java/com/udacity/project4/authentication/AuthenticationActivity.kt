@@ -27,6 +27,9 @@ class AuthenticationActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val loginButton = findViewById<Button>(R.id.loginBTN)
 
+        loginButton.setOnClickListener{
+            signIn()
+        }
         if (currentUser != null) {
             val intent = Intent(this, RemindersActivity::class.java)
             startActivity(intent)
