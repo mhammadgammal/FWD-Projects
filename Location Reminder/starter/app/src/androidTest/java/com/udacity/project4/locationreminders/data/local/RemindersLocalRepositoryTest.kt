@@ -19,8 +19,9 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-@ExperimentalCoroutinesApi
+
 @RunWith(AndroidJUnit4::class)
+@ExperimentalCoroutinesApi
 //Medium Test to test the repository
 @MediumTest
 class RemindersLocalRepositoryTest {
@@ -30,7 +31,7 @@ class RemindersLocalRepositoryTest {
     @get:Rule
     var mainCoroutineRule = MainCoroutineRule()
 
-    val reminderList = listOf(
+    private val reminderList = listOf(
         ReminderDTO("title 1", "description 1", "location 1", 30.1236, 31.3388),
         ReminderDTO("title 2", "description 2", "location 2", 30.1237, 31.3389),
         ReminderDTO("title 3", "description 3", "location 3", 30.1238, 31.3390),
@@ -72,11 +73,30 @@ class RemindersLocalRepositoryTest {
     }
 
     @Test
+    fun getReminderById_Exist() = runBlockingTest {
+        assertThat((remindersRepo.getReminder(reminder1.id) as? Result.Error)?.message).isEqualTo(
+            "Reminder not found!"
+        )
+
+        fakeRemindersDao.remindersList[reminder1.id] = reminder1
+
+        val loadedreminder = (remindersRepo.getReminder(reminder1.id) as? Result.Success)?.data
+
+        Assert.assertThat(loadedreminder as ReminderDTO, CoreMatchers.notNullValue())
+        Assert.assertThat(loadedreminder.id, CoreMatchers.`is`(reminder1.id))
+        Assert.assertThat(loadedreminder.title, CoreMatchers.`is`(reminder1.title))
+        Assert.assertThat(loadedreminder.description, CoreMatchers.`is`(reminder1.description))
+        Assert.assertThat(loadedreminder.location, CoreMatchers.`is`(reminder1.location))
+        Assert.assertThat(loadedreminder.latitude, CoreMatchers.`is`(reminder1.latitude))
+        Assert.assertThat(loadedreminder.longitude, CoreMatchers.`is`(reminder1.longitude))
+
+
+    }
+    @Test
     fun getReminderByIdThatDoesNotExist() = runBlockingTest {
         val message = (remindersRepo.getReminder(reminder1.id) as? Result.Error)?.message
         Assert.assertThat<String>(message, CoreMatchers.notNullValue())
         assertThat(message).isEqualTo("Reminder not found!")
-
     }
 
     @Test

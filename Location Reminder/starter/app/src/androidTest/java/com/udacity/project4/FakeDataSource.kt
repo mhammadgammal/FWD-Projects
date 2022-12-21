@@ -15,7 +15,7 @@ class FakeDataSource(var tasks: MutableList<ReminderDTO>? = mutableListOf()) : R
 
     override suspend fun getReminder(id: String): Result<ReminderDTO> {
         tasks?.firstOrNull { it.id == id }?.let { return Result.Success(it) }
-        return com.udacity.project4.locationreminders.data.dto.Result.Error("Reminder not found")
+        return Result.Error("Reminder not found")
     }
 
     override suspend fun deleteAllReminders() {

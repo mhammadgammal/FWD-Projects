@@ -6,7 +6,7 @@ import com.udacity.project4.locationreminders.data.local.RemindersDao
 class FakeReminderDao: RemindersDao {
     var shouldReturnError = false
 
-    public val remindersList : LinkedHashMap<String, ReminderDTO> = LinkedHashMap()
+    val remindersList : LinkedHashMap<String, ReminderDTO> = LinkedHashMap()
     override suspend fun getReminders(): List<ReminderDTO> {
         if(shouldReturnError){
             throw Exception("Test Exception")
@@ -18,9 +18,7 @@ class FakeReminderDao: RemindersDao {
     }
 
     override suspend fun getReminderById(reminderId: String): ReminderDTO? {
-        if(shouldReturnError){
-            throw Exception("Test Exception")
-        }
+        if(shouldReturnError){ throw Exception("Test Exception") }
 
         remindersList[reminderId]?.let {
             return it
