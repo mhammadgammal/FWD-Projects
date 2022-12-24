@@ -24,10 +24,7 @@ class ReminderListFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_reminders, container, false
-            )
+            FragmentRemindersBinding.inflate(inflater)
         binding.viewModel = _viewModel
 
         setHasOptionsMenu(true)
@@ -64,8 +61,7 @@ class ReminderListFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() {
-        val adapter = RemindersListAdapter {
-        }
+        val adapter = RemindersListAdapter{}
 
 //        setup the recycler view using the extension function
         binding.reminderssRecyclerView.setup(adapter)
