@@ -50,7 +50,6 @@ import org.mockito.Mockito.verify
 class ReminderListFragmentTest :
     AutoCloseKoinTest() {
     private val TAG = "ReminderListFragmentTes"
-    private val dataSource: ReminderDataSource by inject()
     private lateinit var fakeDataSource: FakeDataSource
     private lateinit var reminderViewModel: RemindersListViewModel
 
@@ -136,7 +135,7 @@ class ReminderListFragmentTest :
     @Test
     fun errorSnackBackShown() = runBlockingTest {
         launchFragmentInContainer<ReminderListFragment>(Bundle(), R.style.AppTheme)
-        this@ReminderListFragmentTest.dataSource.deleteAllReminders()
+        this@ReminderListFragmentTest.fakeDataSource.deleteAllReminders()
         onView(withText("No Data"))
             .check(matches(isDisplayed()))
     }
