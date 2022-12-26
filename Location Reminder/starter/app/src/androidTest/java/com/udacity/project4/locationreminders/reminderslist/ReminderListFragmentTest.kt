@@ -49,7 +49,6 @@ import org.mockito.Mockito.verify
 @MediumTest
 class ReminderListFragmentTest :
     AutoCloseKoinTest() {
-    private val TAG = "ReminderListFragmentTes"
     private lateinit var fakeDataSource: FakeDataSource
     private lateinit var reminderViewModel: RemindersListViewModel
 

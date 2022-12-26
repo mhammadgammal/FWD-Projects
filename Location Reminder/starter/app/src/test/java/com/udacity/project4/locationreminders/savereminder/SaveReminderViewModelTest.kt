@@ -1,5 +1,6 @@
 package com.udacity.project4.locationreminders.savereminder
 
+import android.os.Build
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -16,9 +17,11 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.koin.core.context.stopKoin
+import org.robolectric.annotation.Config
 
 @ExperimentalCoroutinesApi
 @RunWith(AndroidJUnit4::class)
+@Config(sdk = [Build.VERSION_CODES.P])
 class SaveReminderViewModelTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
