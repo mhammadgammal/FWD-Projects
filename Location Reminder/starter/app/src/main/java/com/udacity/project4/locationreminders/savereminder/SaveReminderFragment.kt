@@ -1,6 +1,7 @@
 package com.udacity.project4.locationreminders.savereminder
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -36,7 +37,7 @@ class SaveReminderFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_save_reminder, container, false)
 
@@ -82,6 +83,7 @@ class SaveReminderFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("MissingPermission")
     private fun addGeofence(reminder: ReminderDataItem) {
         val pendingIntent = geofence.pendingIntent()
         val geofence = geofence.geofence(
@@ -164,6 +166,6 @@ class SaveReminderFragment : BaseFragment() {
     }
 
     companion object{
-       private const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
+        const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
     }
 }

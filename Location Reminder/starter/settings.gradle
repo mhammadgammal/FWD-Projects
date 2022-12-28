@@ -1,2 +1,4 @@
 include ':app'
+include ':HoloGraphLibrary'
+include ':HoloGraphLibrarySample'
 rootProject.name='Project4'
