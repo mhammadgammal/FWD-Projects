@@ -41,6 +41,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var marker: Marker
     private lateinit var reminderLocationTitle: String
     private lateinit var location: LatLng
+    private var isMapReady = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -112,9 +113,11 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         this.map = googleMap
+        isMapReady = true
         onPoiClick(map)
         setOnLongClick(map)
-
+        if (isForegroundPermissionGranted())
+            getUserLocation(map)
     }
 
 
@@ -130,7 +133,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                     currentLocation?.let {
                         location = LatLng(currentLocation.latitude, currentLocation.longitude)
                         reminderLocationTitle = "Current Location"
-                        map.moveCamera(CameraUpdateFactory.newLatLng(location))
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 16f))
                         marker = map.addMarker(
                             MarkerOptions().position(location)
                                 .title(reminderLocationTitle)
@@ -238,15 +241,15 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
     override fun onResume() {
         super.onResume()
-
-        if (isForegroundPermissionGranted())
-            getUserLocation(map)
-        else
-            Toast.makeText(
-                requireContext(),
-                "Allow Location permission to get your current location",
-                Toast.LENGTH_LONG
-            ).show()
+        if (isMapReady)
+            if (isForegroundPermissionGranted())
+                getUserLocation(map)
+            else
+                Toast.makeText(
+                    requireContext(),
+                    "Allow Location permission to get your current location",
+                    Toast.LENGTH_LONG
+                ).show()
         if (!isForegroundPermissionGranted())
             Toast.makeText(
                 requireContext(),

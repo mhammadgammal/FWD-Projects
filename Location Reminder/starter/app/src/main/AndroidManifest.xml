@@ -33,7 +33,7 @@
         </activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDDDtqV-fdzjbncpcXY4uHc_FOWr4zOt1g" />
+            android:value="AIzaSyDWoPhorJkQgxgsVWgXKMwyuz1yCoeMBO8" />
         <activity android:name=".locationreminders.RemindersActivity" >
         </activity>
 
