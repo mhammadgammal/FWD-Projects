@@ -3,6 +3,7 @@ package com.udacity.project4.authentication
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
@@ -19,6 +20,7 @@ class AuthenticationActivity : AppCompatActivity() {
 
     companion object {
         private const val SIGN_IN_RESULT_CODE = 1001
+        private const val TAG = "AuthenticationActivity"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +33,7 @@ class AuthenticationActivity : AppCompatActivity() {
             signIn()
         }
         if (currentUser != null) {
+            Log.d(TAG, "onCreate: current user isn't null")
             val intent = Intent(this, RemindersActivity::class.java)
             startActivity(intent)
         }

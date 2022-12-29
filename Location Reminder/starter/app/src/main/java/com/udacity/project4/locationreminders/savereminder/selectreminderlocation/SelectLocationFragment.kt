@@ -227,7 +227,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     companion object {
         private const val REQUEST_LOCATION_PERMISSION: Int = 0
         private const val REQUEST_CODE_BACKGROUND = 102929
-        private fun checkDeviceLocationStatues(activity: Activity, view: View): Boolean{
+        fun checkDeviceLocationStatues(activity: Activity, view: View): Boolean{
             var locationState = true
             val locationRequest = LocationRequest.create().apply {
                 priority = LocationRequest.PRIORITY_LOW_POWER

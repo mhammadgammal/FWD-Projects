@@ -5,12 +5,14 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.google.android.gms.common.api.ApiException
@@ -72,11 +74,15 @@ class SaveReminderFragment : BaseFragment() {
                 latitude,
                 longitude
             )
-            if(checkDeviceLocationStatues())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
+                checkQLocationPermission()
+            else if (checkLocationPermissions() &&
+                checkDeviceLocationStatues()
+            )
                 addGeofence(reminder)
             else
                 Snackbar.make(binding.root, R.string.location_required_error, Snackbar.LENGTH_LONG)
-                    .setAction(android.R.string.ok){
+                    .setAction(android.R.string.ok) {
                         checkDeviceLocationStatues()
                     }.show()
             _viewModel.validateAndSaveReminder(reminder)
@@ -102,11 +108,12 @@ class SaveReminderFragment : BaseFragment() {
         }
         geofencingClient.addGeofences(geofencingRequest, pendingIntent)
             .addOnSuccessListener {
-                Toast.makeText(requireContext(), "geofence added successfully", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "geofence added successfully", Toast.LENGTH_SHORT)
+                    .show()
             }
             .addOnFailureListener { exception ->
                 exception as ApiException
-                when(exception.statusCode){
+                when (exception.statusCode) {
                     GeofenceStatusCodes.GEOFENCE_NOT_AVAILABLE -> Log.d(
                         tag,
                         "addGeofence: GEOFENCE_NOT_AVAILABLE"
@@ -122,7 +129,7 @@ class SaveReminderFragment : BaseFragment() {
         _viewModel.onClear()
     }
 
-    private fun checkDeviceLocationStatues(): Boolean{
+    private fun checkDeviceLocationStatues(): Boolean {
         var locationState = true
         val locationRequest = LocationRequest.create().apply {
             priority = LocationRequest.PRIORITY_LOW_POWER
@@ -134,20 +141,20 @@ class SaveReminderFragment : BaseFragment() {
         val settingsClient = LocationServices.getSettingsClient(requireActivity())
 
         settingsClient.checkLocationSettings(locationRequestBuilder.build()).apply {
-            addOnCompleteListener{
+            addOnCompleteListener {
                 locationState = true
             }
-            addOnFailureListener{
-                if(it is ResolvableApiException){
+            addOnFailureListener {
+                if (it is ResolvableApiException) {
                     try {
                         it.startResolutionForResult(
                             requireActivity(),
                             REQUEST_TURN_DEVICE_LOCATION_ON
                         )
-                    }catch (ex: java.lang.Exception){
+                    } catch (ex: java.lang.Exception) {
                         Log.d("SaveFragment", "checkDeviceLocationStatues: Error")
                     }
-                }else{
+                } else {
                     locationState = false
                 }
             }
@@ -155,17 +162,34 @@ class SaveReminderFragment : BaseFragment() {
         return locationState
     }
 
+
+    private fun checkLocationPermissions(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun checkQLocationPermission(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            requireActivity(),
+            Manifest.permission.ACCESS_BACKGROUND_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == REQUEST_TURN_DEVICE_LOCATION_ON){
-            if (resultCode == Activity.RESULT_OK){
+        if (requestCode == REQUEST_TURN_DEVICE_LOCATION_ON) {
+            if (resultCode == Activity.RESULT_OK) {
                 addGeofence(reminder)
-            }else
+            } else
                 checkDeviceLocationStatues()
         }
     }
 
-    companion object{
+    companion object {
         const val REQUEST_TURN_DEVICE_LOCATION_ON = 29
     }
 }
