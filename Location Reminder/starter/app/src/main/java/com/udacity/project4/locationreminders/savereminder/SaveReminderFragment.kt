@@ -26,6 +26,7 @@ import com.udacity.project4.base.NavigationCommand
 import com.udacity.project4.databinding.FragmentSaveReminderBinding
 import com.udacity.project4.locationreminders.geofence.GeofencingUtil
 import com.udacity.project4.locationreminders.reminderslist.ReminderDataItem
+import com.udacity.project4.locationreminders.savereminder.selectreminderlocation.SelectLocationFragment
 import com.udacity.project4.utils.setDisplayHomeAsUpEnabled
 import org.koin.android.ext.android.inject
 
@@ -80,11 +81,18 @@ class SaveReminderFragment : BaseFragment() {
                 checkDeviceLocationStatues()
             )
                 addGeofence(reminder)
-            else
+            else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION),
+                    SelectLocationFragment.REQUEST_LOCATION_PERMISSION
+                )
                 Snackbar.make(binding.root, R.string.location_required_error, Snackbar.LENGTH_LONG)
                     .setAction(android.R.string.ok) {
                         checkDeviceLocationStatues()
                     }.show()
+            }
             _viewModel.validateAndSaveReminder(reminder)
         }
     }
