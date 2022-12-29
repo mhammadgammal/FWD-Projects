@@ -78,9 +78,10 @@ class SaveReminderFragment : BaseFragment() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                 checkQLocationPermission()
             else if (checkLocationPermissions()) {
-                if (checkDeviceLocationStatues())
-                addGeofence(reminder)
-                _viewModel.validateAndSaveReminder(reminder)
+                if (checkDeviceLocationStatues()) {
+                    addGeofence(reminder)
+                    _viewModel.validateAndSaveReminder(reminder)
+                }
                 else Snackbar.make(binding.root, R.string.location_required_error, Snackbar.LENGTH_LONG)
                     .setAction(android.R.string.ok) {
                         checkDeviceLocationStatues()
