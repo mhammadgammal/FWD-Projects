@@ -77,23 +77,26 @@ class SaveReminderFragment : BaseFragment() {
             )
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)
                 checkQLocationPermission()
-            else if (checkLocationPermissions() &&
-                checkDeviceLocationStatues()
-            )
+            else if (checkLocationPermissions()) {
+                if (checkDeviceLocationStatues())
                 addGeofence(reminder)
-            else {
-                ActivityCompat.requestPermissions(
-                    requireActivity(),
-                    arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION),
-                    SelectLocationFragment.REQUEST_LOCATION_PERMISSION
-                )
-                Snackbar.make(binding.root, R.string.location_required_error, Snackbar.LENGTH_LONG)
+                _viewModel.validateAndSaveReminder(reminder)
+                else Snackbar.make(binding.root, R.string.location_required_error, Snackbar.LENGTH_LONG)
                     .setAction(android.R.string.ok) {
                         checkDeviceLocationStatues()
                     }.show()
             }
-            _viewModel.validateAndSaveReminder(reminder)
+            else {
+                ActivityCompat.requestPermissions(
+                    requireActivity(),
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ),
+                    SelectLocationFragment.REQUEST_LOCATION_PERMISSION
+                )
+            }
+
         }
     }
 
