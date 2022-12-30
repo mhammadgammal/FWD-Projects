@@ -145,7 +145,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         } else {
             Toast.makeText(
                 requireContext(),
-                "Unable to determine current location",
+                "Error: Unable to determine current location",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -253,7 +253,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         if (!isForegroundPermissionGranted())
             Toast.makeText(
                 requireContext(),
-                "Unable to determine current location",
+                "Error: Unable to determine current location",
                 Toast.LENGTH_SHORT
             ).show()
     }
