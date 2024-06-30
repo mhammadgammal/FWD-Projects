@@ -6,8 +6,7 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
-@Suppress("UNCHECKED_CAST")
-class MainViewModelFactory(val application: Application, val isConnected: Boolean): ViewModelProvider.Factory {
+class MainViewModelFactory(private val application: Application, private val isConnected: Boolean): ViewModelProvider.Factory {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(MainViewModel::class.java)){
