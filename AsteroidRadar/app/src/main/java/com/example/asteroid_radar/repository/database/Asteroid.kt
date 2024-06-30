@@ -1,4 +1,4 @@
-package com.example.asteroidradar.repository.database
+package com.example.asteroid_radar.repository.database
 
 import android.os.Parcelable
 import androidx.room.Entity

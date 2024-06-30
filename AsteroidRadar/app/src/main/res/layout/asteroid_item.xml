@@ -7,11 +7,11 @@
 
         <variable
             name="asteroid"
-            type="com.example.asteroidradar.repository.database.Asteroid" />
+            type="com.example.asteroid_radar.repository.database.Asteroid" />
 
         <variable
             name="click"
-            type="com.example.asteroidradar.main.AsteroidsAdapter.AsteroidClickListener" />
+            type="com.example.asteroid_radar.main.AsteroidsAdapter.AsteroidClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

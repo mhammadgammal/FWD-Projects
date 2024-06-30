@@ -1,4 +1,4 @@
-package com.example.asteroidradar.main
+package com.example.asteroid_radar.main
 
 import android.app.Application
 import android.os.Build
@@ -9,12 +9,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.asteroidradar.DateUtil
-import com.example.asteroidradar.repository.AsteroidRepo
-import com.example.asteroidradar.repository.database.Asteroid
-import com.example.asteroidradar.repository.database.AsteroidRadarDatabase.Companion.getInstance
-import com.example.asteroidradar.repository.database.PictureOfDay
-import com.example.asteroidradar.toFormattedString
+import com.example.asteroid_radar.DateUtil
+import com.example.asteroid_radar.repository.AsteroidRepo
+import com.example.asteroid_radar.repository.database.Asteroid
+import com.example.asteroid_radar.repository.database.AsteroidRadarDatabase.Companion.getInstance
+import com.example.asteroid_radar.repository.database.PictureOfDay
+import com.example.asteroid_radar.toFormattedString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

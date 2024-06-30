@@ -1,8 +1,8 @@
-package com.example.asteroidradar.repository.api
+package com.example.asteroid_radar.repository.api
 
 import android.annotation.SuppressLint
-import com.example.asteroidradar.repository.database.Asteroid
-import com.example.asteroidradar.Constants
+import com.example.asteroid_radar.repository.database.Asteroid
+import com.example.asteroid_radar.Constants
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*

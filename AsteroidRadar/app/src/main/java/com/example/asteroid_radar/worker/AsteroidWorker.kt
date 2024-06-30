@@ -1,10 +1,10 @@
-package com.example.asteroidradar.Worker
+package com.example.asteroid_radar.worker
 
 import android.content.Context
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
-import com.example.asteroidradar.repository.AsteroidRepo
-import com.example.asteroidradar.repository.database.AsteroidRadarDatabase.Companion.getInstance
+import com.example.asteroid_radar.repository.AsteroidRepo
+import com.example.asteroid_radar.repository.database.AsteroidRadarDatabase.Companion.getInstance
 import retrofit2.HttpException
 
 class AsteroidWorker(context: Context, workParams: WorkerParameters)

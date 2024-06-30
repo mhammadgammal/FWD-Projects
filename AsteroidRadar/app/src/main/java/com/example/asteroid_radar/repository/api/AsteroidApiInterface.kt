@@ -1,6 +1,6 @@
-package com.example.asteroidradar.repository.api
+package com.example.asteroid_radar.repository.api
 
-import com.example.asteroidradar.repository.database.PictureOfDay
+import com.example.asteroid_radar.repository.database.PictureOfDay
 import retrofit2.http.GET
 
 interface AsteroidApiInterface {

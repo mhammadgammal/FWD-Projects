@@ -1,4 +1,4 @@
-package com.example.asteroidradar.repository.database
+package com.example.asteroid_radar.repository.database
 
 
 data class PictureOfDay(

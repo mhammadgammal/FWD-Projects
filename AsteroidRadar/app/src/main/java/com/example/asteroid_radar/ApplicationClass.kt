@@ -1,8 +1,8 @@
-package com.example.asteroidradar
+package com.example.asteroid_radar
 
 import android.app.Application
 import androidx.work.*
-import com.example.asteroidradar.Worker.AsteroidWorker
+import com.example.asteroid_radar.worker.AsteroidWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

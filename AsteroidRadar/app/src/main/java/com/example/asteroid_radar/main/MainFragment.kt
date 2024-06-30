@@ -1,4 +1,4 @@
-package com.example.asteroidradar.main
+package com.example.asteroid_radar.main
 
 import android.content.Context
 import android.net.ConnectivityManager

@@ -1,12 +1,12 @@
-package com.example.asteroidradar.repository
+package com.example.asteroid_radar.repository
 
-import com.example.asteroidradar.DateUtil
-import com.example.asteroidradar.repository.api.Network
-import com.example.asteroidradar.repository.api.parseAsteroidsJsonResult
-import com.example.asteroidradar.repository.database.Asteroid
-import com.example.asteroidradar.repository.database.AsteroidRadarDatabase
-import com.example.asteroidradar.repository.database.PictureOfDay
-import com.example.asteroidradar.toFormattedString
+import com.example.asteroid_radar.DateUtil
+import com.example.asteroid_radar.repository.api.Network
+import com.example.asteroid_radar.repository.api.parseAsteroidsJsonResult
+import com.example.asteroid_radar.repository.database.Asteroid
+import com.example.asteroid_radar.repository.database.AsteroidRadarDatabase
+import com.example.asteroid_radar.repository.database.PictureOfDay
+import com.example.asteroid_radar.toFormattedString
 import org.json.JSONObject
 import java.util.ArrayList
 class AsteroidRepo(private val db: AsteroidRadarDatabase) {

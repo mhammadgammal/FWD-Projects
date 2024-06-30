@@ -1,5 +1,6 @@
-package com.example.asteroidradar.detail
+package com.example.asteroid_radar.detail
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,10 +11,6 @@ import com.example.asteroidradar.R
 import com.example.asteroidradar.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

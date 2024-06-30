@@ -1,4 +1,4 @@
-package com.example.asteroidradar.repository.api
+package com.example.asteroid_radar.repository.api
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
